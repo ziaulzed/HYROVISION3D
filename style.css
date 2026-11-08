@@ -1,0 +1,1921 @@
+/* ==========================================================
+   HYROVISION3D
+   MARINE PROPELLER HYDRODYNAMICS SIMULATION LABORATORY
+
+   Author:
+   Md Ziaul Haque FICS
+   Lecturer in Marine Engineering
+
+   Version: 1.0
+   File: style.css
+
+   Design:
+   Professional Ocean Blue Marine Engineering Interface
+   ========================================================== */
+
+
+/* ==========================================================
+   01. DESIGN VARIABLES
+   ========================================================== */
+
+:root {
+
+    /* Primary marine colours */
+
+    --ocean-blue: #006994;
+
+    --deep-navy: #003B5C;
+
+    --navy-dark: #002A43;
+
+    --ocean-light: #D9EDF5;
+
+    --ice-blue: #E8F3F8;
+
+    --marine-white: #F7FAFC;
+
+    --pure-white: #FFFFFF;
+
+    --turquoise: #16A6B6;
+
+
+    /* Engineering indicator colours */
+
+    --steel-grey: #8799A5;
+
+    --slate-dark: #243746;
+
+    --slate-medium: #526778;
+
+    --slate-light: #78909C;
+
+    --success-green: #168A73;
+
+    --warning-amber: #E5A23D;
+
+    --danger-red: #D95757;
+
+
+    /* Border colours */
+
+    --border-light: #DCE6EC;
+
+    --border-medium: #CAD8E1;
+
+
+    /* Background colours */
+
+    --background-main: #F7FAFC;
+
+    --background-panel: #FFFFFF;
+
+    --background-secondary: #E8F3F8;
+
+
+    /* Typography */
+
+    --font-primary:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+
+    /* Layout */
+
+    --header-height: 82px;
+
+    --content-max-width: 1800px;
+
+    --panel-radius: 8px;
+
+
+    /* Shadows */
+
+    --shadow-small:
+        0 2px 8px rgba(0, 42, 67, 0.045);
+
+    --shadow-medium:
+        0 4px 16px rgba(0, 42, 67, 0.075);
+
+
+    /* Transitions */
+
+    --transition-standard:
+        0.2s ease;
+
+}
+
+
+/* ==========================================================
+   02. GLOBAL RESET
+   ========================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family: var(--font-primary);
+
+    background: var(--background-main);
+
+    color: var(--slate-dark);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    min-height: 100%;
+
+    overflow-x: hidden;
+
+}
+
+
+button,
+input,
+select {
+
+    font-family: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+button:disabled {
+
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+}
+
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+
+    outline: 3px solid var(--turquoise);
+
+    outline-offset: 3px;
+
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+}
+
+
+p {
+
+    margin: 0;
+
+}
+
+
+/* ==========================================================
+   03. MAIN HEADER
+   ========================================================== */
+
+.main-header {
+
+    width: 100%;
+
+    min-height: var(--header-height);
+
+    background: var(--deep-navy);
+
+    color: var(--pure-white);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 17px 34px;
+
+    border-bottom: 3px solid var(--turquoise);
+
+}
+
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    min-width: 0;
+
+}
+
+
+.brand h1 {
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+
+    color: var(--pure-white);
+
+}
+
+
+.brand h1 span {
+
+    color: #71D4E0;
+
+}
+
+
+.brand p {
+
+    margin-top: 3px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.7px;
+
+    color: #CADFEA;
+
+}
+
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 5px;
+
+    color: #E1EEF4;
+
+    font-size: 12px;
+
+}
+
+
+.status-indicator {
+
+    width: 8px;
+
+    height: 8px;
+
+    background: #53CDA5;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+}
+
+
+/* ==========================================================
+   04. MAIN NAVIGATION
+   ========================================================== */
+
+.main-navigation {
+
+    width: 100%;
+
+    background: var(--pure-white);
+
+    border-bottom: 1px solid var(--border-light);
+
+    padding: 0 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+.nav-button {
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 3px solid transparent;
+
+    color: var(--slate-medium);
+
+    padding: 15px 20px 13px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        color var(--transition-standard),
+        background var(--transition-standard),
+        border-color var(--transition-standard);
+
+}
+
+
+.nav-button:hover {
+
+    color: var(--ocean-blue);
+
+    background: var(--ice-blue);
+
+}
+
+
+.nav-button.active {
+
+    color: var(--ocean-blue);
+
+    border-bottom-color: var(--ocean-blue);
+
+}
+
+
+/* ==========================================================
+   05. MAIN DASHBOARD
+   ========================================================== */
+
+.dashboard {
+
+    width: 100%;
+
+    max-width: var(--content-max-width);
+
+    margin: 0 auto;
+
+    padding: 25px 28px 40px;
+
+}
+
+
+.introduction {
+
+    margin-bottom: 24px;
+
+}
+
+
+.section-heading {
+
+    margin-bottom: 17px;
+
+}
+
+
+.section-heading h2 {
+
+    color: var(--deep-navy);
+
+    font-size: 21px;
+
+    font-weight: 650;
+
+    letter-spacing: -0.25px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.section-heading p {
+
+    color: var(--slate-medium);
+
+    font-size: 13px;
+
+    max-width: 850px;
+
+}
+
+
+/* ==========================================================
+   06. SIMULATION LAYOUT
+   ========================================================== */
+
+.simulation-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(235px, 270px)
+        minmax(0, 1fr)
+        minmax(235px, 270px);
+
+    gap: 18px;
+
+    align-items: stretch;
+
+    margin-bottom: 32px;
+
+}
+
+
+.control-panel,
+.visualisation-panel,
+.performance-panel {
+
+    background: var(--background-panel);
+
+    border: 1px solid var(--border-light);
+
+    border-radius: var(--panel-radius);
+
+    min-width: 0;
+
+    box-shadow: var(--shadow-small);
+
+}
+
+
+.control-panel {
+
+    padding: 20px;
+
+}
+
+
+.visualisation-panel {
+
+    padding: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.performance-panel {
+
+    padding: 20px;
+
+}
+
+
+/* ==========================================================
+   07. PANEL HEADINGS
+   ========================================================== */
+
+.panel-heading {
+
+    border-bottom: 1px solid var(--border-light);
+
+    padding-bottom: 14px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.panel-heading h3 {
+
+    font-size: 15px;
+
+    font-weight: 650;
+
+    color: var(--deep-navy);
+
+    margin-bottom: 4px;
+
+}
+
+
+.panel-heading p {
+
+    color: var(--slate-light);
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================================================
+   08. OPERATING CONTROLS
+   ========================================================== */
+
+.control-group {
+
+    margin-bottom: 25px;
+
+}
+
+
+.control-group label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: var(--slate-dark);
+
+    margin-bottom: 10px;
+
+}
+
+
+.control-value {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 6px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.control-value output {
+
+    color: var(--ocean-blue);
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    font-variant-numeric: tabular-nums;
+
+    line-height: 1.1;
+
+}
+
+
+.control-value span {
+
+    font-size: 12px;
+
+    color: var(--slate-medium);
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================================
+   09. RANGE SLIDERS
+   ========================================================== */
+
+input[type="range"] {
+
+    width: 100%;
+
+    height: 6px;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    background: #D6E4EB;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    display: block;
+
+}
+
+
+input[type="range"]::-webkit-slider-thumb {
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: var(--ocean-blue);
+
+    border: 3px solid var(--pure-white);
+
+    box-shadow: 0 0 0 1px var(--ocean-blue);
+
+}
+
+
+input[type="range"]::-moz-range-thumb {
+
+    width: 14px;
+
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: var(--ocean-blue);
+
+    border: 3px solid var(--pure-white);
+
+    box-shadow: 0 0 0 1px var(--ocean-blue);
+
+}
+
+
+input[type="range"]:hover::-webkit-slider-thumb {
+
+    background: var(--deep-navy);
+
+}
+
+
+.range-labels {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 9px;
+
+    font-size: 11px;
+
+    color: var(--slate-light);
+
+}
+
+
+/* ==========================================================
+   10. FLOW VISUALISATION CONTROLS
+   ========================================================== */
+
+.visualisation-controls {
+
+    padding-top: 17px;
+
+    border-top: 1px solid var(--border-light);
+
+    margin-bottom: 22px;
+
+}
+
+
+.visualisation-controls h4 {
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    color: var(--deep-navy);
+
+    margin-bottom: 13px;
+
+}
+
+
+.toggle-control {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+
+    font-size: 12px;
+
+    color: var(--slate-dark);
+
+    cursor: pointer;
+
+}
+
+
+.toggle-control input {
+
+    width: 16px;
+
+    height: 16px;
+
+    accent-color: var(--ocean-blue);
+
+    flex-shrink: 0;
+
+}
+
+
+/* ==========================================================
+   11. SIMULATION BUTTONS
+   ========================================================== */
+
+.simulation-controls {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+.primary-button,
+.secondary-button {
+
+    min-height: 42px;
+
+    padding: 10px 12px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    transition:
+        background var(--transition-standard),
+        border-color var(--transition-standard);
+
+}
+
+
+.primary-button {
+
+    grid-column: 1 / -1;
+
+    border: 1px solid var(--ocean-blue);
+
+    background: var(--ocean-blue);
+
+    color: var(--pure-white);
+
+}
+
+
+.primary-button:hover {
+
+    background: var(--deep-navy);
+
+    border-color: var(--deep-navy);
+
+}
+
+
+.secondary-button {
+
+    background: var(--pure-white);
+
+    border: 1px solid var(--border-medium);
+
+    color: var(--deep-navy);
+
+}
+
+
+.secondary-button:hover {
+
+    background: var(--ice-blue);
+
+    border-color: var(--ocean-blue);
+
+}
+
+
+/* ==========================================================
+   12. THREE-DIMENSIONAL PROPELLER WINDOW
+   ========================================================== */
+
+.propeller-container {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 490px;
+
+    min-height: 390px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 38%,
+            #0E729B 0%,
+            #075578 42%,
+            #003B5C 78%,
+            #002A43 100%
+        );
+
+    border: 1px solid #164F69;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+}
+
+
+/* Three.js canvas */
+
+.propeller-container canvas {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    outline: none;
+
+}
+
+
+/* ==========================================================
+   13. LOADING MESSAGE
+   ========================================================== */
+
+.loading-message {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: var(--pure-white);
+
+    pointer-events: none;
+
+}
+
+
+.loading-message h3 {
+
+    font-size: 29px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.loading-message p {
+
+    font-size: 15px;
+
+    color: #D9EDF5;
+
+    margin-bottom: 12px;
+
+}
+
+
+.loading-message small {
+
+    font-size: 12px;
+
+    color: #B8D6E5;
+
+    max-width: 380px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ==========================================================
+   14. VISUALISATION FOOTER
+   ========================================================== */
+
+.visualisation-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 14px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid var(--border-light);
+
+}
+
+
+.visualisation-footer span {
+
+    font-size: 10px;
+
+    font-weight: 650;
+
+    color: var(--slate-medium);
+
+    letter-spacing: 0.45px;
+
+}
+
+
+/* ==========================================================
+   15. PERFORMANCE METRIC CARDS
+   ========================================================== */
+
+.metric-card {
+
+    background: var(--marine-white);
+
+    border: 1px solid var(--border-light);
+
+    border-left: 3px solid var(--ocean-blue);
+
+    border-radius: 5px;
+
+    padding: 15px;
+
+    margin-bottom: 13px;
+
+}
+
+
+.metric-card h4 {
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    color: var(--slate-medium);
+
+    margin-bottom: 8px;
+
+}
+
+
+.metric-value {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 6px;
+
+    margin-bottom: 7px;
+
+    min-width: 0;
+
+}
+
+
+.metric-value output {
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: var(--deep-navy);
+
+    font-variant-numeric: tabular-nums;
+
+    letter-spacing: -0.7px;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+.metric-value span {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: var(--slate-medium);
+
+    white-space: nowrap;
+
+}
+
+
+.metric-card p {
+
+    font-size: 11px;
+
+    color: var(--slate-light);
+
+}
+
+
+/* ==========================================================
+   16. CAVITATION ASSESSMENT
+   ========================================================== */
+
+.cavitation-status {
+
+    margin-top: 16px;
+
+    padding: 15px;
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 5px;
+
+    background: var(--ice-blue);
+
+}
+
+
+.cavitation-status h4 {
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    color: var(--deep-navy);
+
+    margin-bottom: 8px;
+
+}
+
+
+#cavitationStatus {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: var(--slate-medium);
+
+    line-height: 1.5;
+
+}
+
+
+/* ==========================================================
+   17. PERFORMANCE ANALYSIS SECTION
+   ========================================================== */
+
+.analysis-section {
+
+    margin-top: 25px;
+
+    margin-bottom: 34px;
+
+}
+
+
+.graph-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+.graph-panel {
+
+    background: var(--pure-white);
+
+    border: 1px solid var(--border-light);
+
+    border-radius: var(--panel-radius);
+
+    padding: 19px;
+
+    min-width: 0;
+
+    box-shadow: var(--shadow-small);
+
+}
+
+
+.graph-panel h3 {
+
+    color: var(--deep-navy);
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    padding-bottom: 12px;
+
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid var(--border-light);
+
+}
+
+
+.graph-container {
+
+    width: 100%;
+
+    min-height: 300px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--slate-light);
+
+    font-size: 12px;
+
+    text-align: center;
+
+}
+
+
+/* Plotly graph sizing */
+
+.graph-container .plot-container {
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   18. ENGINEERING INTERPRETATION
+   ========================================================== */
+
+.engineering-section {
+
+    margin-bottom: 34px;
+
+}
+
+
+.engineering-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+.engineering-card {
+
+    background: var(--pure-white);
+
+    border: 1px solid var(--border-light);
+
+    border-top: 3px solid var(--ocean-blue);
+
+    border-radius: 6px;
+
+    padding: 20px;
+
+    min-width: 0;
+
+    box-shadow: var(--shadow-small);
+
+}
+
+
+.engineering-card h3 {
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    color: var(--deep-navy);
+
+    margin-bottom: 12px;
+
+}
+
+
+.engineering-card p {
+
+    font-size: 12px;
+
+    color: var(--slate-medium);
+
+    line-height: 1.8;
+
+}
+
+
+/* ==========================================================
+   19. ENGINEERING NOTICE
+   ========================================================== */
+
+.simulation-notice {
+
+    background: #F0F6F9;
+
+    border: 1px solid #C9DFE9;
+
+    border-left: 4px solid var(--ocean-blue);
+
+    border-radius: 5px;
+
+    padding: 18px 20px;
+
+    margin-top: 20px;
+
+}
+
+
+.simulation-notice p {
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    color: var(--slate-medium);
+
+}
+
+
+.simulation-notice strong {
+
+    color: var(--deep-navy);
+
+}
+
+
+/* ==========================================================
+   20. FOOTER
+   ========================================================== */
+
+.main-footer {
+
+    width: 100%;
+
+    background: var(--deep-navy);
+
+    color: var(--pure-white);
+
+    padding: 25px 34px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 25px;
+
+    border-top: 3px solid var(--turquoise);
+
+}
+
+
+.footer-left,
+.footer-right {
+
+    min-width: 0;
+
+}
+
+
+.footer-left strong {
+
+    font-size: 16px;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.footer-left p {
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    color: #C6DCE7;
+
+}
+
+
+.footer-right {
+
+    text-align: right;
+
+}
+
+
+.footer-right p {
+
+    font-size: 12px;
+
+    color: #D7E6EE;
+
+    line-height: 1.7;
+
+}
+
+
+.footer-right strong {
+
+    color: var(--pure-white);
+
+}
+
+
+/* ==========================================================
+   21. INTERACTIVE STATES
+   ========================================================== */
+
+.is-running .status-indicator {
+
+    background: #53CDA5;
+
+}
+
+
+.is-paused .status-indicator {
+
+    background: var(--warning-amber);
+
+}
+
+
+.is-stopped .status-indicator {
+
+    background: var(--steel-grey);
+
+}
+
+
+.cavitation-safe {
+
+    color: var(--success-green) !important;
+
+}
+
+
+.cavitation-warning {
+
+    color: #A66B17 !important;
+
+}
+
+
+.cavitation-danger {
+
+    color: var(--danger-red) !important;
+
+}
+
+
+/* ==========================================================
+   22. TABLET RESPONSIVE LAYOUT
+   ========================================================== */
+
+@media (max-width: 1250px) {
+
+    .simulation-layout {
+
+        grid-template-columns:
+            minmax(220px, 260px)
+            minmax(0, 1fr);
+
+    }
+
+
+    .performance-panel {
+
+        grid-column: 1 / -1;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: 12px;
+
+        align-content: start;
+
+    }
+
+
+    .performance-panel > .panel-heading {
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    .metric-card {
+
+        margin-bottom: 0;
+
+    }
+
+
+    .cavitation-status {
+
+        grid-column: 1 / -1;
+
+        margin-top: 0;
+
+    }
+
+
+    .engineering-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ==========================================================
+   23. SMALL TABLET LAYOUT
+   ========================================================== */
+
+@media (max-width: 850px) {
+
+    .main-header {
+
+        padding: 18px 22px;
+
+    }
+
+
+    .main-navigation {
+
+        padding: 0 18px;
+
+    }
+
+
+    .dashboard {
+
+        padding: 22px 18px 35px;
+
+    }
+
+
+    .simulation-layout {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+
+    .control-panel,
+    .visualisation-panel,
+    .performance-panel {
+
+        grid-column: 1;
+
+    }
+
+
+    .control-panel {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 14px 20px;
+
+    }
+
+
+    .control-panel > .panel-heading {
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    .control-group {
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .visualisation-controls {
+
+        grid-column: 1 / -1;
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        column-gap: 24px;
+
+        row-gap: 10px;
+
+    }
+
+
+    .visualisation-controls h4 {
+
+        width: 100%;
+
+    }
+
+
+    .toggle-control {
+
+        margin-bottom: 0;
+
+    }
+
+
+    .simulation-controls {
+
+        grid-column: 1 / -1;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+
+    .primary-button {
+
+        grid-column: auto;
+
+    }
+
+
+    .performance-panel {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .graph-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .propeller-container {
+
+        height: 440px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   24. MOBILE LAYOUT
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    .main-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+        padding: 17px;
+
+    }
+
+
+    .brand h1 {
+
+        font-size: 23px;
+
+    }
+
+
+    .brand p {
+
+        font-size: 9px;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    .main-navigation {
+
+        padding: 0 8px;
+
+        overflow-x: auto;
+
+    }
+
+
+    .nav-button {
+
+        white-space: nowrap;
+
+        padding: 14px 12px 12px;
+
+        font-size: 12px;
+
+    }
+
+
+    .dashboard {
+
+        padding: 18px 12px 28px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .control-panel,
+    .visualisation-panel,
+    .performance-panel {
+
+        padding: 16px;
+
+    }
+
+
+    .control-panel {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+
+    .control-panel > .panel-heading,
+    .visualisation-controls,
+    .simulation-controls {
+
+        grid-column: 1;
+
+    }
+
+
+    .control-group {
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .simulation-controls {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .primary-button {
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    .performance-panel {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+    }
+
+
+    .metric-card {
+
+        padding: 12px;
+
+    }
+
+
+    .metric-value output {
+
+        font-size: 21px;
+
+    }
+
+
+    .propeller-container {
+
+        height: 350px;
+
+        min-height: 300px;
+
+    }
+
+
+    .loading-message h3 {
+
+        font-size: 23px;
+
+    }
+
+
+    .graph-grid {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+
+    .graph-container {
+
+        min-height: 260px;
+
+    }
+
+
+    .engineering-grid {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+
+    .main-footer {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 23px 18px;
+
+    }
+
+
+    .footer-right {
+
+        text-align: left;
+
+    }
+
+}
+
+
+/* ==========================================================
+   25. VERY SMALL MOBILE DEVICES
+   ========================================================== */
+
+@media (max-width: 380px) {
+
+    .performance-panel {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+
+    .metric-card {
+
+        padding: 14px;
+
+    }
+
+
+    .propeller-container {
+
+        height: 300px;
+
+        min-height: 280px;
+
+    }
+
+
+    .visualisation-footer {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}
+
+
+/* ==========================================================
+   26. REDUCED MOTION ACCESSIBILITY
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+}
+
+
+/* ==========================================================
+   END OF HYROVISION3D STYLESHEET
+
+   Author:
+   Md Ziaul Haque FICS
+   Lecturer in Marine Engineering
+   ========================================================== */

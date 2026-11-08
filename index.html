@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!--
+    HYROVISION3D — MARINE PROPULSION LABORATORY
+
+    Invisible Forces Behind the Ship's Propeller
+
+    Author:
+    Md Ziaul Haque FICS
+    Lecturer in Marine Engineering
+
+    Version: 1.5
+    Development Stage: 9
+
+    Theme: Ocean Blue / Marine Navy / White
+
+    Educational engineering simulator.
+    Not a validated CFD solution.
+    -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="author"
+        content="Md Ziaul Haque FICS, Lecturer in Marine Engineering"
+    >
+
+    <meta
+        name="description"
+        content="HYROVISION3D marine propeller simulator with 3D rotation, water flow, thrust, torque, cavitation, pressure visualisation and performance graphs."
+    >
+
+    <meta name="theme-color" content="#003B5C">
+
+    <title>
+        HYROVISION3D | Marine Propeller Simulation Laboratory
+    </title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="main-header">
+
+        <div class="header-left">
+            <div class="brand">
+                <h1>HYROVISION<span>3D</span></h1>
+                <p>MARINE PROPULSION SIMULATION LABORATORY</p>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="system-status">
+                <span
+                    class="status-indicator"
+                    aria-hidden="true"
+                ></span>
+
+                <span
+                    id="systemStatus"
+                    role="status"
+                    aria-live="polite"
+                >
+                    Initialising Simulation
+                </span>
+            </div>
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+
+    <nav
+        class="main-navigation"
+        aria-label="Dashboard navigation"
+    >
+
+        <button
+            type="button"
+            class="nav-button active"
+            data-view="simulation"
+            aria-current="true"
+        >
+            3D Simulation
+        </button>
+
+        <button
+            type="button"
+            class="nav-button"
+            data-view="performance"
+        >
+            Performance Analysis
+        </button>
+
+        <button
+            type="button"
+            class="nav-button"
+            data-view="engineering"
+        >
+            Engineering Data
+        </button>
+
+    </nav>
+
+
+    <!-- MAIN DASHBOARD -->
+
+    <main class="dashboard">
+
+        <section class="introduction">
+            <div class="section-heading">
+                <h2>
+                    Invisible Forces Behind the Ship's Propeller
+                </h2>
+
+                <p>
+                    Interactive 3D marine propulsion analysis:
+                    propeller rotation, water flow, pressure,
+                    vortices, thrust, torque, efficiency
+                    and cavitation.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- MAIN THREE-COLUMN SIMULATION -->
+
+        <section
+            class="simulation-layout"
+            id="simulationSection"
+        >
+
+            <!-- LEFT: CONTROLS -->
+
+            <aside class="control-panel">
+
+                <div class="panel-heading">
+                    <h3>Operating Conditions</h3>
+                    <p>Adjust propeller parameters</p>
+                </div>
+
+
+                <div class="control-group">
+
+                    <label for="rpmSlider">
+                        Propeller Speed
+                    </label>
+
+                    <div class="control-value">
+                        <output id="rpmValue" for="rpmSlider">
+                            120
+                        </output>
+                        <span>RPM</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="rpmSlider"
+                        min="0"
+                        max="300"
+                        step="5"
+                        value="120"
+                    >
+
+                    <div class="range-labels">
+                        <span>0</span>
+                        <span>300 RPM</span>
+                    </div>
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <label for="pitchSlider">
+                        Blade Pitch
+                    </label>
+
+                    <div class="control-value">
+                        <output id="pitchValue" for="pitchSlider">
+                            25
+                        </output>
+                        <span>Degrees</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="pitchSlider"
+                        min="5"
+                        max="45"
+                        step="1"
+                        value="25"
+                    >
+
+                    <div class="range-labels">
+                        <span>5°</span>
+                        <span>45°</span>
+                    </div>
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <label for="speedSlider">
+                        Water Advance Speed
+                    </label>
+
+                    <div class="control-value">
+                        <output id="speedValue" for="speedSlider">
+                            5.0
+                        </output>
+                        <span>m/s</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="speedSlider"
+                        min="0"
+                        max="15"
+                        step="0.5"
+                        value="5"
+                    >
+
+                    <div class="range-labels">
+                        <span>0 m/s</span>
+                        <span>15 m/s</span>
+                    </div>
+
+                </div>
+
+
+                <!-- VISUALISATION CONTROLS -->
+
+                <div class="visualisation-controls">
+
+                    <h4>Flow Visualisation</h4>
+
+                    <label class="toggle-control">
+                        <input
+                            type="checkbox"
+                            id="waterToggle"
+                            checked
+                        >
+                        <span>Water Flow</span>
+                    </label>
+
+                    <label class="toggle-control">
+                        <input
+                            type="checkbox"
+                            id="vortexToggle"
+                            checked
+                        >
+                        <span>Tip Vortices</span>
+                    </label>
+
+                    <label class="toggle-control">
+                        <input
+                            type="checkbox"
+                            id="pressureToggle"
+                        >
+                        <span>Pressure Distribution</span>
+                    </label>
+
+                    <label class="toggle-control">
+                        <input
+                            type="checkbox"
+                            id="cavitationToggle"
+                        >
+                        <span>Cavitation Indicator</span>
+                    </label>
+
+                </div>
+
+
+                <!-- START / PAUSE / RESET -->
+
+                <div class="simulation-controls">
+
+                    <button
+                        type="button"
+                        id="startButton"
+                        class="primary-button"
+                    >
+                        Start Simulation
+                    </button>
+
+                    <button
+                        type="button"
+                        id="pauseButton"
+                        class="secondary-button"
+                        disabled
+                    >
+                        Pause
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resetButton"
+                        class="secondary-button"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+            </aside>
+
+
+            <!-- CENTRE: 3D PROPELLER -->
+
+            <section class="visualisation-panel">
+
+                <div class="panel-heading">
+                    <h3>3D Propeller Hydrodynamics</h3>
+                    <p>
+                        Water flow, vortex and pressure visualisation
+                    </p>
+                </div>
+
+
+                <div
+                    id="propellerContainer"
+                    class="propeller-container"
+                    aria-label="Interactive 3D marine propeller"
+                >
+
+                    <div
+                        id="loadingMessage"
+                        class="loading-message"
+                        role="status"
+                    >
+                        <h3>HYROVISION3D</h3>
+                        <p>Initialising Marine Propeller</p>
+                        <small>
+                            Loading the 3D rendering engine.
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <!-- PRESSURE COLOUR LEGEND -->
+
+                <div
+                    id="pressureLegend"
+                    hidden
+                    style="
+                        padding:12px;
+                        margin-top:12px;
+                        border:1px solid #CAD8E1;
+                        border-radius:5px;
+                        background:#F7FAFC;
+                    "
+                >
+
+                    <strong
+                        style="
+                            display:block;
+                            color:#003B5C;
+                            font-size:12px;
+                            margin-bottom:8px;
+                        "
+                    >
+                        Illustrative Blade Pressure Coefficient
+                    </strong>
+
+                    <div
+                        aria-label="Pressure coefficient colour scale"
+                        style="
+                            height:14px;
+                            border-radius:3px;
+                            background:linear-gradient(
+                                to right,
+                                #17468B,
+                                #087CB5,
+                                #36B7D1,
+                                #B1DBD3,
+                                #E5B45B,
+                                #C65C4D
+                            );
+                        "
+                    ></div>
+
+                    <div
+                        style="
+                            display:flex;
+                            justify-content:space-between;
+                            margin-top:5px;
+                            color:#526778;
+                            font-size:11px;
+                        "
+                    >
+                        <span>Lower Cp: −2.0</span>
+                        <span>Higher Cp: +0.6</span>
+                    </div>
+
+                    <p
+                        id="pressureModelStatus"
+                        style="
+                            font-size:11px;
+                            color:#526778;
+                            margin-top:8px;
+                        "
+                    >
+                        Illustrative pressure display
+                    </p>
+
+                </div>
+
+
+                <div class="visualisation-footer">
+                    <span>MODEL: FIVE-BLADE PROPELLER</span>
+                    <span>FLOW: ILLUSTRATIVE</span>
+                    <span>UNITS: SI</span>
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT: PERFORMANCE -->
+
+            <aside class="performance-panel">
+
+                <div class="panel-heading">
+                    <h3>Live Performance</h3>
+                    <p>Illustrative open-water predictions</p>
+                </div>
+
+
+                <div class="metric-card">
+                    <h4>Propeller Thrust</h4>
+                    <div class="metric-value">
+                        <output id="thrustValue">--</output>
+                        <span>kN</span>
+                    </div>
+                    <p>Estimated axial thrust</p>
+                </div>
+
+
+                <div class="metric-card">
+                    <h4>Shaft Torque</h4>
+                    <div class="metric-value">
+                        <output id="torqueValue">--</output>
+                        <span>kN·m</span>
+                    </div>
+                    <p>Estimated rotational loading</p>
+                </div>
+
+
+                <div class="metric-card">
+                    <h4>Shaft Input</h4>
+                    <div class="metric-value">
+                        <output id="powerValue">--</output>
+                        <span>kW</span>
+                    </div>
+                    <p>Estimated mechanical input</p>
+                </div>
+
+
+                <div class="metric-card">
+                    <h4>Open-Water Efficiency</h4>
+                    <div class="metric-value">
+                        <output id="efficiencyValue">--</output>
+                        <span>%</span>
+                    </div>
+                    <p>Estimated propeller efficiency</p>
+                </div>
+
+
+                <div class="cavitation-status">
+                    <h4>Cavitation Assessment</h4>
+                    <div
+                        id="cavitationStatus"
+                        role="status"
+                    >
+                        Awaiting assessment
+                    </div>
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <!-- OPEN-WATER COEFFICIENTS -->
+
+        <section class="analysis-section">
+
+            <div class="section-heading">
+                <h2>Open-Water Engineering Coefficients</h2>
+                <p>
+                    Dimensionless propulsion performance parameters.
+                </p>
+            </div>
+
+
+            <div class="engineering-grid">
+
+                <article class="engineering-card">
+                    <h3>Advance Coefficient</h3>
+                    <p>Advance coefficient, J</p>
+                    <p class="control-value">
+                        <output id="advanceCoefficientValue">--</output>
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Thrust Coefficient</h3>
+                    <p>Dimensionless thrust coefficient</p>
+                    <p class="control-value">
+                        <output id="thrustCoefficientValue">--</output>
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Torque Coefficient</h3>
+                    <p>Dimensionless torque coefficient</p>
+                    <p class="control-value">
+                        <output id="torqueCoefficientValue">--</output>
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Calculation Status</h3>
+                    <p id="calculationStatus" role="status">
+                        Awaiting calculation
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAVITATION READINGS -->
+
+        <section
+            class="analysis-section"
+            id="cavitationSection"
+        >
+
+            <div class="section-heading">
+                <h2>Cavitation and Pressure Assessment</h2>
+                <p>
+                    Illustrative assessment assuming 5 m shaft
+                    immersion and seawater temperature of 20°C.
+                </p>
+            </div>
+
+
+            <div class="engineering-grid">
+
+                <article class="engineering-card">
+                    <h3>Estimated Local Pressure</h3>
+                    <p class="control-value">
+                        <output id="localPressureValue">--</output>
+                        <span>kPa</span>
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Cavitation Number</h3>
+                    <p class="control-value">
+                        <output id="cavitationNumberValue">--</output>
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Pressure Margin</h3>
+                    <p class="control-value">
+                        <output id="pressureMarginValue">--</output>
+                        <span>kPa</span>
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Cavitation Model</h3>
+                    <p id="cavitationModelStatus" role="status">
+                        Awaiting assessment
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PERFORMANCE GRAPHS -->
+
+        <section
+            class="analysis-section"
+            id="performanceSection"
+        >
+
+            <div class="section-heading">
+                <h2>Interactive Propulsion Performance Analysis</h2>
+                <p>
+                    Examine thrust, torque, efficiency
+                    and operating-condition comparisons.
+                </p>
+            </div>
+
+
+            <!-- REFERENCE COMPARISON -->
+
+            <div class="graph-panel" style="margin-bottom:18px;">
+
+                <h3>Operating Condition Reference</h3>
+
+                <p
+                    id="referenceConditionLabel"
+                    role="status"
+                    style="margin-bottom:12px;"
+                >
+                    120 RPM | 25° pitch | 5.0 m/s
+                </p>
+
+                <div
+                    style="
+                        display:flex;
+                        gap:10px;
+                        flex-wrap:wrap;
+                    "
+                >
+
+                    <button
+                        type="button"
+                        id="saveReferenceButton"
+                        class="primary-button"
+                        style="grid-column:auto;"
+                    >
+                        Save Current as Reference
+                    </button>
+
+                    <button
+                        type="button"
+                        id="restoreReferenceButton"
+                        class="secondary-button"
+                    >
+                        Restore Default Reference
+                    </button>
+
+                </div>
+
+                <p style="margin-top:12px;font-size:12px;">
+                    The comparison uses each valid reference
+                    value as 100%. Hover over the graph
+                    to inspect actual engineering readings.
+                </p>
+
+            </div>
+
+
+            <div class="graph-grid">
+
+                <div class="graph-panel">
+                    <h3>Thrust vs Propeller Speed</h3>
+                    <div
+                        id="thrustGraph"
+                        class="graph-container"
+                    >
+                        Initialising graph
+                    </div>
+                </div>
+
+                <div class="graph-panel">
+                    <h3>Torque vs Propeller Speed</h3>
+                    <div
+                        id="torqueGraph"
+                        class="graph-container"
+                    >
+                        Initialising graph
+                    </div>
+                </div>
+
+                <div class="graph-panel">
+                    <h3>Efficiency vs Advance Speed</h3>
+                    <div
+                        id="efficiencyGraph"
+                        class="graph-container"
+                    >
+                        Initialising graph
+                    </div>
+                </div>
+
+                <div class="graph-panel">
+                    <h3>Operating Condition Comparison</h3>
+                    <div
+                        id="comparisonGraph"
+                        class="graph-container"
+                    >
+                        Initialising graph
+                    </div>
+                </div>
+
+            </div>
+
+            <p
+                id="graphStatus"
+                role="status"
+                style="font-size:12px;margin-top:12px;"
+            >
+                Charts use illustrative open-water
+                coefficient data.
+            </p>
+
+        </section>
+
+
+        <!-- ENGINEERING INTERPRETATION -->
+
+        <section
+            class="engineering-section"
+            id="engineeringSection"
+        >
+
+            <div class="section-heading">
+                <h2>Engineering Interpretation</h2>
+                <p>
+                    Physical principles represented
+                    in the HYROVISION3D simulator.
+                </p>
+            </div>
+
+            <div class="engineering-grid">
+
+                <article class="engineering-card">
+                    <h3>Thrust Generation</h3>
+                    <p>
+                        Propeller rotation transfers momentum
+                        to surrounding water. The resulting
+                        reaction force generates thrust.
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Torque and Shaft Input</h3>
+                    <p>
+                        Shaft torque represents rotational
+                        loading. Mechanical input is calculated
+                        from torque and angular velocity.
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Blade Pressure</h3>
+                    <p>
+                        Pressure differences across propeller
+                        blade surfaces contribute to thrust.
+                        The current colour field is illustrative,
+                        not obtained from CFD.
+                    </p>
+                </article>
+
+                <article class="engineering-card">
+                    <h3>Cavitation</h3>
+                    <p>
+                        Vapour cavities may form when local
+                        absolute pressure reaches the
+                        water vapour pressure. Collapse in
+                        higher-pressure regions can cause
+                        noise, vibration and erosion.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- DIAGNOSTICS PANEL -->
+
+        <section
+            class="analysis-section"
+            id="diagnosticsSection"
+        >
+
+            <div class="section-heading">
+                <h2>Engineering System Diagnostics</h2>
+                <p>
+                    Check rendering modules, interface connections,
+                    performance graphs and numerical calculations.
+                </p>
+            </div>
+
+
+            <div class="graph-panel">
+
+                <button
+                    type="button"
+                    id="runDiagnosticsButton"
+                    class="primary-button"
+                    style="
+                        grid-column:auto;
+                        margin-bottom:16px;
+                    "
+                >
+                    Run System Diagnostics
+                </button>
+
+                <p
+                    id="diagnosticsSummary"
+                    role="status"
+                    style="
+                        font-weight:600;
+                        color:#003B5C;
+                        margin-bottom:12px;
+                    "
+                >
+                    Select Run System Diagnostics
+                    to verify the application.
+                </p>
+
+
+                <div style="overflow-x:auto;">
+
+                    <table
+                        style="
+                            width:100%;
+                            border-collapse:collapse;
+                            font-size:12px;
+                            text-align:left;
+                        "
+                    >
+
+                        <thead>
+                            <tr
+                                style="
+                                    background:#E8F3F8;
+                                    color:#003B5C;
+                                "
+                            >
+                                <th style="padding:10px;">
+                                    Diagnostic
+                                </th>
+                                <th style="padding:10px;">
+                                    Result
+                                </th>
+                                <th style="padding:10px;">
+                                    Details
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="diagnosticsResults">
+                            <tr>
+                                <td
+                                    colspan="3"
+                                    style="padding:12px;"
+                                >
+                                    No tests run yet.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ENGINEERING NOTICE -->
+
+        <section class="simulation-notice">
+
+            <p>
+                <strong>Engineering Simulation Notice:</strong>
+
+                HYROVISION3D is an educational marine
+                propulsion simulator.
+
+                The thrust, torque and efficiency model
+                uses illustrative open-water coefficients.
+
+                The blade-pressure colours, water particles,
+                tip vortices and vapour cavities are graphical
+                approximations rather than CFD solutions.
+
+                The cavitation assessment uses assumed
+                environmental conditions and estimated
+                local-pressure coefficients.
+
+                Results require independent verification
+                before use in vessel design, machinery
+                selection or operational decisions.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="main-footer">
+
+        <div class="footer-left">
+            <strong>HYROVISION3D</strong>
+            <p>Marine Propulsion Simulation Laboratory</p>
+        </div>
+
+        <div class="footer-right">
+            <p>
+                Developed by
+                <strong>Md Ziaul Haque FICS</strong>
+            </p>
+            <p>Lecturer in Marine Engineering</p>
+        </div>
+
+    </footer>
+
+
+    <!--
+     COMPLETE MODULE CONNECTIONS
+
+     Step 3: Main Controller
+     Step 4: 3D Propeller
+     Step 5: Water Flow
+     Step 6: Hydrodynamics
+     Step 7: Cavitation
+     Step 8: Performance Charts
+     Step 9: Blade Pressure and Diagnostics
+    -->
+
+
+    <!-- PLOTLY CHART LIBRARY -->
+
+    <script
+        src="https://cdn.plot.ly/plotly-4.1.1.min.js"
+        charset="utf-8"
+        defer
+    ></script>
+
+
+    <!-- 3D PROPELLER -->
+
+    <script
+        src="js/propeller3d.js"
+        defer
+    ></script>
+
+
+    <!-- WATER FLOW -->
+
+    <script
+        src="js/waterflow.js"
+        defer
+    ></script>
+
+
+    <!-- MAIN CONTROLLER -->
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
+
+
+    <!-- HYDRODYNAMIC CALCULATIONS -->
+
+    <script
+        type="module"
+        src="js/hydrodynamics.js"
+    ></script>
+
+
+    <!-- CAVITATION -->
+
+    <script
+        type="module"
+        src="js/cavitation.js"
+    ></script>
+
+
+    <!-- PERFORMANCE CHARTS -->
+
+    <script
+        type="module"
+        src="js/performance.js"
+    ></script>
+
+
+    <!-- PRESSURE DISTRIBUTION -->
+
+    <script
+        type="module"
+        src="js/pressure.js"
+    ></script>
+
+
+    <!-- SYSTEM DIAGNOSTICS -->
+
+    <script
+        type="module"
+        src="js/diagnostics.js"
+    ></script>
+
+</body>
+
+</html>
